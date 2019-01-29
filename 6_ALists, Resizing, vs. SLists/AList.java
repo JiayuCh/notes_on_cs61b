@@ -14,7 +14,10 @@ public class AList<Item> {
 
     public void addLast(Item x){
         if (size == items.length){
-            resize(size += 1);
+            // This is quite time-consuming: resize(size + REFACTOR)
+            //resize(size += 1);
+            // Great Performance: this is how the Python list is implemented -> resize(size * REFACTOR)
+            resize(size * 2);
         }
         items[size] = x;
         size += 1;
@@ -33,7 +36,8 @@ public class AList<Item> {
     }
 
     public Item removeLast(){
-        Item temp = items[size - 1];
+        Item temp = getLast();
+        //Item temp = items[size - 1];
         items[size - 1] = null;
         size -= 1;
         return temp;
